@@ -1,0 +1,24 @@
+@use "@angular/material" as mat;
+.primary{
+  @include mat.theme(
+    (
+      color: mat.$cyan-palette
+    )
+
+  )
+}
+.secundary{
+  @include mat.theme(
+    (
+      color:mat.$orange-palette
+
+    )
+  )
+}
+.warn{
+  @include mat.theme(
+    (
+      color: mat.$red-palette
+    )
+  )
+}
