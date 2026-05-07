@@ -17,15 +17,89 @@
   </div>
 </div>
 <div class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
-  <form class="space-y-8">
+  <form class="space-y-8" [formGroup]="form">
     <section>
+
       <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
+
       <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input  matInput type="text">
+        <mat-label>Nombre y Apellido:</mat-label>
+        <input  matInput [formControl]="form.controls.Nombre"/>
+        @if(formutilidades.isvalidField(form,'Nombre')){
+          <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
+        }
 
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="form.controls.FechaNacimiento">
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cedula</mat-label>
+        <input matInput [formControl]="form.controls.Cedula" type="number">
+        @if(formutilidades.isvalidField(form,'Cedula')){
+          <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
+        }
+
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput [formControl]="form.controls.Correo">
+        @if(formutilidades.isvalidField(form,'Correo')){
+          <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input matInput [formControl]="form.controls.Telefono" type="number">
+        @if(formutilidades.isvalidField(form,'Telefono')){
+          <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
+        }
+
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Direccion</mat-label>
+        <textarea placeholder="Calle,Numero,Provincia" matInput [formControl]="form.controls.Direccion" type="text"></textarea>
+        @if(formutilidades.isvalidField(form,'Direccion')){
+          <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
+        }
+      </mat-form-field>
+      <h1>Genero</h1>
+      <app-selector-multiple [Seleccionados]="generoseleccionado" [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
+    </section>
+    <section>
+      <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <h1>Estado</h1>
+        <app-selector-multiple [Seleccionados]="estadoseleccionado" [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
+
+        </div>
+        <div>
+          <h1>Sangre</h1>
+        <app-selector-multiple [Seleccionados]="sangreseleccionada"[NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
+
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Alergias</mat-label>
+          <textarea matInput [formControl]="form.controls.Alegias" ></textarea>
+          @if(formutilidades.isvalidField(form,'Alegias')){
+          <mat-error>{{formutilidades.getFieldError(form,"Alegias")}}</mat-error>
+        }
+
+
+        </mat-form-field>
+
+
+
+
+      </div>
     </section>
 
   </form>
