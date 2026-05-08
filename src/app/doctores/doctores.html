@@ -1,0 +1,59 @@
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
+    <form class="space-y-8" [formGroup]="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Doctor</mat-label>
+        <input matInput [formControl]="form.controls.Nombre" type="text">
+        @if(formutilidades.isvalidField(form,"Nombre")){
+        <mat-error>{{formutilidades.getFieldError(form,'Nombre')}}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Especialidad</mat-label>
+        <input matInput [formControl]="form.controls.Especialidad" type="text">
+        @if(formutilidades.isvalidField(form,"Especialidad")){
+        <mat-error>{{formutilidades.getFieldError(form,'Especialidad')}}</mat-error>
+        }
+      </mat-form-field>
+      <div class="flex justify-end pt-2">
+        <div class="boton-registro">
+          <button class="inline-flex items-center
+      justify-center gap-2 whitespace-nowrap
+      rounded-md text-sm font-medium
+      transition-colors focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
+      [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-save w-4 h-4 mr-2">
+            <path
+              d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+            </path>
+            <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+            <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+          </svg>
+          Registro</button>
+
+        </div>
+
+
+          <button>
+
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F9DB78"><path d="M640-640v-120H320v120h-80v-200h480v200h-80Zm-480 80h640-640Zm560 100q17 0 28.5-11.5T760-500q0-17-11.5-28.5T720-540q-17 0-28.5 11.5T680-500q0 17 11.5 28.5T720-460Zm-80 260v-160H320v160h320Zm80 80H240v-160H80v-240q0-51 35-85.5t85-34.5h560q51 0 85.5 34.5T880-520v240H720v160Zm80-240v-160q0-17-11.5-28.5T760-560H200q-17 0-28.5 11.5T160-520v160h80v-80h480v80h80Z"/></svg>
+
+
+         
+
+
+          </button>
+
+
+
+
+      </div>
+
+    </form>
+
+  </div>
+</main>

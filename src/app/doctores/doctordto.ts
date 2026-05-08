@@ -1,0 +1,11 @@
+export interface DoctorDTO{
+  Id:number,
+  Nombre:string,
+  Especialidad:string
+}
+
+export interface CrearDoctorDTO{
+  Nombre:string,
+  Especialidad:string
+
+}

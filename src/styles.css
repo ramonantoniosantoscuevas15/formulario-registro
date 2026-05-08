@@ -41,7 +41,12 @@ ul il:hover{
   padding: 5px;
 }
 
-button{
+
+.boton-registro button {
   margin: 5px;
+  background: #2385E7 ;
+  color: #ffffff;
 }
+
+
 

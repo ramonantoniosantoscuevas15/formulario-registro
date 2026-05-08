@@ -86,20 +86,41 @@
         <app-selector-multiple [Seleccionados]="sangreseleccionada"[NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
 
         </div>
-        <mat-form-field appearance="outline">
+        <div class="space-y-2 md:col-span-2">
+          <mat-form-field appearance="outline">
           <mat-label>Alergias</mat-label>
           <textarea matInput [formControl]="form.controls.Alegias" ></textarea>
-          @if(formutilidades.isvalidField(form,'Alegias')){
-          <mat-error>{{formutilidades.getFieldError(form,"Alegias")}}</mat-error>
-        }
+        </mat-form-field>
 
+        </div>
+        <div class="space-y-2 md:col-span-2">
+          <mat-form-field appearance="outline">
+          <mat-label>Notas Medicas</mat-label>
+          <textarea matInput [formControl]="form.controls.NotasMedicas"></textarea>
 
         </mat-form-field>
 
-
-
+        </div>
 
       </div>
+    </section>
+    <section>
+      <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Contacto</mat-label>
+        <input matInput [formControl]="form.controls.NombreContacto">
+        @if(formutilidades.isvalidField(form,'NombreContacto')){
+          <mat-error>{{formutilidades.getFieldError(form,'NombreContacto')}}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono del Contacto</mat-label>
+        <input matInput [formControl]="form.controls.TelefonoContacto" type="number">
+        @if(formutilidades.isvalidField(form,'TelefonoContacto')){
+          <mat-error>{{formutilidades.getFieldError(form,'TelefonoContacto')}}</mat-error>
+        }
+
+      </mat-form-field>
     </section>
 
   </form>
