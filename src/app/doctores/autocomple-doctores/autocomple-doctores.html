@@ -1,0 +1,39 @@
+<form>
+  <mat-form-field>
+    <input type="text" placeholder="Seleccione el Doctor" matInput [formControl]="control" [matAutocomplete]="auto"/>
+
+    <mat-autocomplete #auto (optionSelected)="doctorSeleccionado($event)">
+      @for (doctor of doctores; track $index){
+        <mat-option [value]="doctor">
+          {{doctor.Nombre}}
+
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+ @if(doctoresSeleccionados.length > 0){
+  <table mat-table [dataSource]="doctoresSeleccionados" class="mat-elevation-z8" cdkDropList [cdkDropListData]="doctoresSeleccionados"
+  (cdkDropListDropped)="finalizarArrastre($event)">
+  <ng-container matColumnDef="Nombre">
+    <td mat-cell *matCellDef="let doctor">
+      {{doctor.Nombre}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="Especialidad">
+    <td mat-cell *matCellDef="let doctor">
+      {{doctor.Especialidad}}
+    </td>
+
+  </ng-container>
+  <ng-container matColumnDef="Acciones">
+    <td mat-cell *matCellDef="let doctor">
+      <mat-icon mat-list-icon (click)="eliminar(doctor)">close</mat-icon>
+    </td>
+
+  </ng-container>
+  <tr mat-row *matRowDef="let row; columns: columnasAMostrar" cdkDrag [cdkDragData]="row"></tr>
+
+  </table>
+}

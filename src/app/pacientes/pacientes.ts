@@ -10,10 +10,11 @@ import { SelectorMultiple } from "../componentes/selector-multiple/selector-mult
 import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-multiplemodelo';
 import { CrearPacienteDTO } from './pacientedto';
 import moment from 'moment';
+import { AutocompleDoctores } from "../doctores/autocomple-doctores/autocomple-doctores";
 
 @Component({
   selector: 'app-pacientes',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule,  SelectorMultiple],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores],
   templateUrl: './pacientes.html',
 })
 export class Pacientes {
