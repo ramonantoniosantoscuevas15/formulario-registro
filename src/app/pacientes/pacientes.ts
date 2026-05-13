@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,16 +8,25 @@ import { SelectorGenero } from "../selector-genero/selector-genero";
 import { SelectorgeneroDTO } from '../selector-genero/selector-generomodelo';
 import { SelectorMultiple } from "../componentes/selector-multiple/selector-multiple";
 import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-multiplemodelo';
-import { CrearPacienteDTO } from './pacientedto';
+import { CrearPacienteDTO, PacienteDTO } from './pacientedto';
 import moment from 'moment';
 import { AutocompleDoctores } from "../doctores/autocomple-doctores/autocomple-doctores";
+import { DoctorAutoCompleteDTO } from '../doctores/doctordto';
+import { AutocompleHospitales } from "../hospitales/autocomple-hospitales/autocomple-hospitales";
+import { HospitalAutocompleDTO } from '../hospitales/hospitalesdto';
 
 @Component({
   selector: 'app-pacientes',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores, AutocompleHospitales],
   templateUrl: './pacientes.html',
 })
-export class Pacientes {
+export class Pacientes implements OnInit{
+  ngOnInit(): void {
+    if(this.modelo !== undefined){
+      this.form.patchValue(this.modelo)
+    }
+
+  }
   private fb = inject(FormBuilder)
   formutilidades = FormUtilidades
   @Input({required:true}) generoseleccionado!:SelectorMultipleDTO[]
@@ -26,6 +35,9 @@ export class Pacientes {
   @Input({required:true}) estadonoseleccionado!:SelectorMultipleDTO[]
   @Input({required:true}) sangreseleccionada!:SelectorMultipleDTO[]
   @Input({required:true}) sangrenoseleccionada!:SelectorMultipleDTO[]
+  @Input({required:true}) doctoresSeleccionados!:DoctorAutoCompleteDTO[]
+  @Input({required:true}) hospitalesSeleccionados!:HospitalAutocompleDTO[]
+  @Input() modelo?:PacienteDTO
   @Output() postpaciente = new EventEmitter<CrearPacienteDTO>()
 
   form = this.fb.group({
@@ -51,6 +63,7 @@ export class Pacientes {
     paciente.GeneroId = generoId
     paciente.EstadoId = estadoId
     paciente.SangreId = sangreId
+    paciente.Doctores = this.doctoresSeleccionados
     this.postpaciente.emit(paciente)
   }
  }

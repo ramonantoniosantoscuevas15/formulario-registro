@@ -48,6 +48,14 @@ ul il:hover{
   color: #ffffff;
   cursor: pointer;
 }
+mat-icon {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 2rem;
+}
 
 
 

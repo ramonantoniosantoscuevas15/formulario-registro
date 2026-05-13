@@ -1,0 +1,34 @@
+<form>
+  <mat-form-field>
+    <input type="text" placeholder="Seleccione un Hospital" matInput [formControl]="control" [matAutocomplete]="auto">
+
+    <mat-autocomplete #auto (optionSelected)="hospitarSeleccionado($event)">
+      @for(hospital of hospitales; track $index){
+        <mat-option [value]="hospital">
+          {{hospital.Nombre}}
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+@if(hospitalesSeleccionados.length > 0){
+  <table mat-table [dataSource]="hospitalesSeleccionados" class="mat-elevation-z8" cdkDropList [cdkDropListData]="hospitalesSeleccionados"
+    (cdkDropListDropped)="finalizarArrastre($event)"
+    >
+    <ng-container matColumnDef="Nombre">
+      <td mat-cell *matColumnDef="let hospital">
+        {{hospital.Nombre}}
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+    <td mat-cell *matCellDef="let hospital">
+      <mat-icon mat-list-icon (click)="eliminar(hospital)">close</mat-icon>
+    </td>
+
+  </ng-container>
+     <tr mat-row *matRowDef="let row; columns: columnasAMostrar" cdkDrag [cdkDragData]="row"></tr>
+  </table>
+
+}
