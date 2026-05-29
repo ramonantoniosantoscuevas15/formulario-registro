@@ -14,10 +14,12 @@ import { AutocompleDoctores } from "../doctores/autocomple-doctores/autocomple-d
 import { DoctorAutoCompleteDTO } from '../doctores/doctordto';
 import { AutocompleHospitales } from "../hospitales/autocomple-hospitales/autocomple-hospitales";
 import { HospitalAutocompleDTO } from '../hospitales/hospitalesdto';
+import { Selector } from "../componentes/selector/selector";
+import { SelectorDTO } from '../componentes/selector/selectordto';
 
 @Component({
   selector: 'app-pacientes',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores, AutocompleHospitales],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores, AutocompleHospitales,],
   templateUrl: './pacientes.html',
 })
 export class Pacientes implements OnInit{
@@ -37,6 +39,7 @@ export class Pacientes implements OnInit{
   @Input({required:true}) sangrenoseleccionada!:SelectorMultipleDTO[]
   @Input({required:true}) doctoresSeleccionados!:DoctorAutoCompleteDTO[]
   @Input({required:true}) hospitalesSeleccionados!:HospitalAutocompleDTO[]
+
   @Input() modelo?:PacienteDTO
   @Output() postpaciente = new EventEmitter<CrearPacienteDTO>()
 
@@ -58,10 +61,10 @@ export class Pacientes implements OnInit{
     const paciente = this.form.value as CrearPacienteDTO
     paciente.FechaNacimiento = moment(paciente.FechaNacimiento).toDate()
     const generoId = this.generoseleccionado.map(val => val.Id)
-    const estadoId = this.estadoseleccionado.map(val => val.Id)
-    const sangreId = this.sangreseleccionada.map(val => val.Id)
     paciente.GeneroId = generoId
+    const estadoId = this.estadoseleccionado.map(val => val.Id)
     paciente.EstadoId = estadoId
+    const sangreId = this.sangreseleccionada.map(val => val.Id)
     paciente.SangreId = sangreId
     paciente.Doctores = this.doctoresSeleccionados
     this.postpaciente.emit(paciente)

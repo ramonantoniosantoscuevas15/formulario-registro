@@ -15,20 +15,15 @@ import { HospitalServices } from '../hospitalServices';
         DragDropModule],
   templateUrl: './autocomple-hospitales.html',
 })
-export class AutocompleHospitales implements OnInit {
-  ngOnInit(): void {
-    this.control.valueChanges.subscribe(valor =>{
-      if(typeof valor === 'string' && valor){
-        this.hospitalServices.obtenerporNombre(valor).subscribe(hospital =>{
-          this.hospitales = hospital
-        })
-      }
-    })
-  }
+export class AutocompleHospitales  {
+
   control = new FormControl()
-  hospitales : HospitalAutocompleDTO[] = []
+  hospitales : HospitalAutocompleDTO[] = [
+    {Id:1,Nombre:'Mocoso Puello'},
+    {Id:2,Nombre:'CEDIMAT'}
+  ]
   hospitalServices = inject(HospitalServices)
-  columnasAMostrar = ['Nombre','acciones']
+  columnasAMostrar = ['id','nombre','acciones']
    @Input({required:true}) hospitalesSeleccionados: HospitalAutocompleDTO[]=[]
   @ViewChild(MatTable) table!: MatTable<HospitalAutocompleDTO>
 
@@ -48,7 +43,7 @@ export class AutocompleHospitales implements OnInit {
   }
 
   eliminar(hospital:HospitalAutocompleDTO){
-    const indice = this.hospitalesSeleccionados.findIndex((h: HospitalAutocompleDTO)=>h.Id === h.Id)
+    const indice = this.hospitalesSeleccionados.findIndex((h: HospitalAutocompleDTO)=>h.Id === hospital.Id)
     this.hospitalesSeleccionados.splice(indice,1)
     this.table.renderRows()
   }

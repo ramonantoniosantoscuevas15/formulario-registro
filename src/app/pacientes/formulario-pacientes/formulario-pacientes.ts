@@ -6,6 +6,7 @@ import { DoctorAutoCompleteDTO } from '../../doctores/doctordto';
 import { HospitalAutocompleDTO } from '../../hospitales/hospitalesdto';
 import { PacienteServices } from '../pacienteServices';
 import { Router } from '@angular/router';
+import { SelectorDTO } from '../../componentes/selector/selectordto';
 
 @Component({
   selector: 'app-formulario-pacientes',
@@ -14,38 +15,51 @@ import { Router } from '@angular/router';
 })
 export class FormularioPacientes {
   generoseleccionado:SelectorMultipleDTO[]=[]
-  generonoseleccionado:SelectorMultipleDTO[]=[]
+  generonoseleccionado:SelectorMultipleDTO[]=[
+
+
+  ]
   estadoseleccionado:SelectorMultipleDTO[]=[]
-  estadonoseleccionado:SelectorMultipleDTO[]=[]
+  estadonoseleccionado:SelectorMultipleDTO[]=[
+    {Id:1,Tipo:'Activo'},
+    {Id:2,Tipo:'Innativo'}
+
+]
   sangreseleccionada:SelectorMultipleDTO[]=[]
-  sangrenoseleccionada:SelectorMultipleDTO[]=[]
+  sangrenoseleccionada:SelectorMultipleDTO[]=[
+    {Id:1,Tipo:'A+'},
+    {Id:2,Tipo:'A-'},
+    {Id:3,Tipo:'B+'},
+    {Id:4,Tipo:'AB+'},
+    {Id:5,Tipo:'AB-'},
+    {Id:6,Tipo:'O+'},
+    {Id:7,Tipo:'O-'}
+
+  ]
   doctoresSeleccionados:DoctorAutoCompleteDTO[]=[]
   hospitalesSeleccionados:HospitalAutocompleDTO[]=[]
+
   pacienteServices = inject(PacienteServices)
   router = inject(Router);
 constructor(){
-  this.pacienteServices.crearGet().subscribe(modelo =>{
-    this.generonoseleccionado = modelo.Generos.map(genero =>{
-      return <SelectorMultipleDTO>{Id:genero.Id,Tipo:genero.Tipo}
+  this.pacienteServices.crearGetgenero().subscribe(modelo =>{
+    this.generonoseleccionado = modelo.Generos.map(genero=>{
+      return<SelectorMultipleDTO>{Id:genero.Id,Tipo:genero.Tipo}
     })
-    this.estadonoseleccionado = modelo.Estados.map(estado =>{
-      return <SelectorMultipleDTO>{Id:estado.Id,Tipo:estado.Tipo}
-    })
-    this.sangrenoseleccionada = modelo.Sangres.map(sangre =>{
-      return <SelectorMultipleDTO>{Id:sangre.Id,Tipo:sangre.Tipo}
-    })
-
   })
+
 }
 
+
   guardarpaciente(paciente: CrearPacienteDTO){
-    this.pacienteServices
-    this.pacienteServices.crear(paciente).subscribe({
-      next:paciente =>{
-        console.log(paciente)
-        this.router.navigate(['/doctores'])
-      }
-    })
+    // this.pacienteServices
+    // this.pacienteServices.crear(paciente).subscribe({
+    //   next:paciente =>{
+    //     console.log(paciente)
+    //     this.router.navigate(['/doctores'])
+    //   }
+    // })
+    console.log(paciente)
 
   }
 }

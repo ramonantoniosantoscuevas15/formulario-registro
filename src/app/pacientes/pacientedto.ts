@@ -35,20 +35,24 @@ export interface PacienteDTO{
   NotasMedicas:string,
   NombreContacto:string,
   TelefonoContacto:number,
-  Generos?: GeneroDTO[],
-  Estados?: EstadoDTO[],
-  Sangres?: SangreDTO[],
-  Doctores?:DoctorAutoCompleteDTO[],
-  Hospitales?:HospitalAutocompleDTO[]
+  Generos: GeneroDTO[],
+  Estados: EstadoDTO[],
+  Sangres: SangreDTO[],
+  Doctores:DoctorAutoCompleteDTO[],
+  Hospitales:HospitalAutocompleDTO[]
 
 
 
 }
 
 export interface PacientesPostGetDTO{
-  Generos: GeneroDTO[]
-  Estados: EstadoDTO[]
+  Generos: GeneroDTO[],
+  Estados: EstadoDTO[],
   Sangres: SangreDTO[]
+}
+
+export interface GeneroPacientesPostGetdto{
+  Generos:GeneroDTO[]
 }
 
 export interface PacientePutGetDTO{

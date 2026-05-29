@@ -1,132 +1,167 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-<div class="max-w-3xl mx-auto space-y-6">
-<div class="flex items-center gap-3">
-  <a
-  class="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:bg-secondary transition-colors"
-   href="">
-   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4">
-   <path d="m12 19-7-7 7-7"></path>
-   <path d="M19 12H5"></path>
-   </svg>
-  </a>
-  <div>
-    <h1 class="text-2xl font-bold tracking-tight">Nuevo Paciente</h1>
-    <p class="text-muted-foreground mt-0.5"> Complete los del paciente</p>
-
-  </div>
-</div>
-<div class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
-  <form class="space-y-8" [formGroup]="form">
-    <section>
-
-      <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre y Apellido:</mat-label>
-        <input  matInput [formControl]="form.controls.Nombre"/>
-        @if(formutilidades.isvalidField(form,'Nombre')){
-          <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
-        }
-
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [formControl]="form.controls.FechaNacimiento">
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Cedula</mat-label>
-        <input matInput [formControl]="form.controls.Cedula" type="number">
-        @if(formutilidades.isvalidField(form,'Cedula')){
-          <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
-        }
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input matInput [formControl]="form.controls.Correo">
-        @if(formutilidades.isvalidField(form,'Correo')){
-          <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
-        }
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Telefono</mat-label>
-        <input matInput [formControl]="form.controls.Telefono" type="number">
-        @if(formutilidades.isvalidField(form,'Telefono')){
-          <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
-        }
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Direccion</mat-label>
-        <textarea placeholder="Calle,Numero,Provincia" matInput [formControl]="form.controls.Direccion" type="text"></textarea>
-        @if(formutilidades.isvalidField(form,'Direccion')){
-          <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
-        }
-      </mat-form-field>
-      <h1>Genero</h1>
-      <app-selector-multiple [Seleccionados]="generoseleccionado" [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
-    </section>
-    <section>
-      <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div>
-          <h1>Estado</h1>
-        <app-selector-multiple [Seleccionados]="estadoseleccionado" [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
-
-        </div>
-        <div>
-          <h1>Sangre</h1>
-        <app-selector-multiple [Seleccionados]="sangreseleccionada"[NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
-
-        </div>
-        <div class="space-y-2 md:col-span-2">
-          <mat-form-field appearance="outline">
-          <mat-label>Alergias</mat-label>
-          <textarea matInput [formControl]="form.controls.Alegias" ></textarea>
-        </mat-form-field>
-
-        </div>
-        <div class="space-y-2 md:col-span-2">
-          <mat-form-field appearance="outline">
-          <mat-label>Notas Medicas</mat-label>
-          <textarea matInput [formControl]="form.controls.NotasMedicas"></textarea>
-
-        </mat-form-field>
-
-        </div>
+  <div class="max-w-3xl mx-auto space-y-6">
+    <div class="flex items-center gap-3">
+      <a class="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:bg-secondary transition-colors"
+        href="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-arrow-left w-4 h-4">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </a>
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">Nuevo Paciente</h1>
+        <p class="text-muted-foreground mt-0.5"> Complete los del paciente</p>
 
       </div>
-    </section>
-    <section>
-      <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre del Contacto</mat-label>
-        <input matInput [formControl]="form.controls.NombreContacto">
-        @if(formutilidades.isvalidField(form,'NombreContacto')){
-          <mat-error>{{formutilidades.getFieldError(form,'NombreContacto')}}</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Telefono del Contacto</mat-label>
-        <input matInput [formControl]="form.controls.TelefonoContacto" type="number">
-        @if(formutilidades.isvalidField(form,'TelefonoContacto')){
-          <mat-error>{{formutilidades.getFieldError(form,'TelefonoContacto')}}</mat-error>
-        }
+    </div>
+    <div class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
+      <form class="space-y-8" [formGroup]="form">
+        <section>
 
-      </mat-form-field>
-    </section>
-    <app-autocomple-doctores [doctoresSeleccionados]="doctoresSeleccionados"></app-autocomple-doctores>
-    <app-autocomple-hospitales [hospitalesSeleccionados]="hospitalesSeleccionados"></app-autocomple-hospitales>
+          <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
 
-  </form>
-</div>
-</div>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre y Apellido:</mat-label>
+            <input matInput [formControl]="form.controls.Nombre" />
+            @if(formutilidades.isvalidField(form,'Nombre')){
+            <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
+            }
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="form.controls.FechaNacimiento">
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cedula</mat-label>
+            <input matInput [formControl]="form.controls.Cedula" type="number">
+            @if(formutilidades.isvalidField(form,'Cedula')){
+            <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
+            }
+
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput [formControl]="form.controls.Correo">
+            @if(formutilidades.isvalidField(form,'Correo')){
+            <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput [formControl]="form.controls.Telefono" type="number">
+            @if(formutilidades.isvalidField(form,'Telefono')){
+            <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
+            }
+
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Direccion</mat-label>
+            <textarea placeholder="Calle,Numero,Provincia" matInput [formControl]="form.controls.Direccion"
+              type="text"></textarea>
+            @if(formutilidades.isvalidField(form,'Direccion')){
+            <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
+            }
+          </mat-form-field>
+          <h1>Genero</h1>
+          <app-selector-multiple [Seleccionados]="generoseleccionado"
+            [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
+        </section>
+        <section>
+          <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <h1>Estado</h1>
+              <app-selector-multiple [Seleccionados]="estadoseleccionado"
+                [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
+
+            </div>
+            <div>
+              <h1>Sangre</h1>
+              <app-selector-multiple [Seleccionados]="sangreseleccionada"
+                [NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
+
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Alergias</mat-label>
+                <textarea matInput [formControl]="form.controls.Alegias"></textarea>
+              </mat-form-field>
+
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Notas Medicas</mat-label>
+                <textarea matInput [formControl]="form.controls.NotasMedicas"></textarea>
+
+              </mat-form-field>
+
+            </div>
+
+          </div>
+        </section>
+        <section>
+          <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del Contacto</mat-label>
+            <input matInput [formControl]="form.controls.NombreContacto">
+            @if(formutilidades.isvalidField(form,'NombreContacto')){
+            <mat-error>{{formutilidades.getFieldError(form,'NombreContacto')}}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono del Contacto</mat-label>
+            <input matInput [formControl]="form.controls.TelefonoContacto" type="number">
+            @if(formutilidades.isvalidField(form,'TelefonoContacto')){
+            <mat-error>{{formutilidades.getFieldError(form,'TelefonoContacto')}}</mat-error>
+            }
+
+          </mat-form-field>
+        </section>
+        <app-autocomple-hospitales [hospitalesSeleccionados]="hospitalesSeleccionados"></app-autocomple-hospitales>
+        <app-autocomple-doctores [doctoresSeleccionados]="doctoresSeleccionados"></app-autocomple-doctores>
+
+
+        <div class="flex justify-end pt-2">
+          <div class="boton-registro">
+            <button [disabled]="form.invalid" type="submit" class="inline-flex items-center
+      justify-center gap-2 whitespace-nowrap
+      rounded-md text-sm font-medium
+      transition-colors focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
+      [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-save w-4 h-4 mr-2">
+                <path
+                  d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+                </path>
+                <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+                <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+              </svg>
+              Registro</button>
+
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+
+      </form>
+    </div>
+  </div>
 </main>
-
