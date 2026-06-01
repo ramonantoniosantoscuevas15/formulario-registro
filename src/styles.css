@@ -56,6 +56,12 @@ table {
     width: 100%;
     margin-bottom: 2rem;
 }
+mat-toolbar{
+  position: sticky;
+  position: --webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
 
 
 
