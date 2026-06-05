@@ -1,1 +1,51 @@
-<p>buscar-paciente works!</p>,
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <form [formGroup]="form">
+    <div class="flex flex-col sm:flex-row gap-3">
+    <div class="relative flex-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
+       >
+       <circle cx="11" cy="11" r="8"></circle>
+       <path d="m21 21-4.3-4.3"></path>
+
+      </svg>
+      <input [formControl]="form.controls.nombre" class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11" placeholder="Buscar por nombre,email o telefono">
+
+
+    </div>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Estados</mat-label>
+      <mat-select [formControl]="form.controls.estadoId">
+        <mat-option [value]="0">Todos</mat-option>
+        @for (estado of estados; track $index) {
+          <mat-option [value]="estado.id">{{estado.tipo}}</mat-option>
+        }
+      </mat-select>
+
+    </mat-form-field> -->
+     <select [formControl]="form.controls.estadoId"  role="combobox" aria-controls="radix-:r0:" aria-expanded="false" aria-autocomplete="none" dir="ltr"
+    data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+    <option [value]="0">Todos</option>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+     <path d="m6 9 6 6 6-6"></path>
+
+    </svg>
+    @for (estado of estados; track $index) {
+          <option [value]="estado.id">{{estado.tipo}}</option>
+        }
+
+
+
+     </select>
+
+  </div>
+
+
+  </form>
+
+</main>

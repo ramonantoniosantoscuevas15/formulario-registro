@@ -4,10 +4,11 @@ import { DatePipe, LowerCasePipe, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DatePipe,TitleCasePipe],
+  imports: [ Listadopacientes],
   templateUrl: './dashboard.html',
 })
-export class Dashboard  {
+export class Dashboard   {
+
 
 
   pacientes = [

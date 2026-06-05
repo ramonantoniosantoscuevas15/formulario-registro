@@ -1,11 +1,20 @@
 <app-listado-generico [listado]="pacientes">
   <ng-container contenido>
-    <div class="paciente-contenedor">
+    <div class="pacientes-contenedor">
       @for(paciente of pacientes; track $index){
-        <div class="paciente-contenedor">
+        <div class="lista">
           <p>
-            <a href="">{{paciente.nombre}}</a>
+             {{paciente.nombre}}
           </p>
+          <p>
+            {{paciente.fechanacimiento | date:"dd-MMMM-yy" }}
+          </p>
+          <p>{{paciente.telefono}}</p>
+          <p>{{paciente.direccion}}</p>
+          <div>
+            <a mat-flat-button>Editar</a>
+            <button mat-flat-button class="warn"> Eliminar</button>
+          </div>
 
         </div>
       }
