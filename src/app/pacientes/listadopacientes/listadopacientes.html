@@ -1,0 +1,15 @@
+<app-listado-generico [listado]="pacientes">
+  <ng-container contenido>
+    <div class="paciente-contenedor">
+      @for(paciente of pacientes; track $index){
+        <div class="paciente-contenedor">
+          <p>
+            <a href="">{{paciente.nombre}}</a>
+          </p>
+
+        </div>
+      }
+
+    </div>
+  </ng-container>
+</app-listado-generico>

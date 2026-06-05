@@ -22,3 +22,17 @@
     )
   )
 }
+
+.paciente-contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.paciente-contenedor{
+    margin-right: 2%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+

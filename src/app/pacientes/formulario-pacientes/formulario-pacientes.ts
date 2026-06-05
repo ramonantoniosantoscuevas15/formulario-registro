@@ -39,16 +39,16 @@ export class FormularioPacientes {
   doctoresSeleccionados:DoctorAutoCompleteDTO[]=[]
   hospitalesSeleccionados:HospitalAutocompleDTO[]=[]
 
-  pacienteServices = inject(PacienteServices)
-  router = inject(Router);
-constructor(){
-  this.pacienteServices.crearGetgenero().subscribe(modelo =>{
-    this.generonoseleccionado = modelo.Generos.map(genero=>{
-      return<SelectorMultipleDTO>{Id:genero.Id,Tipo:genero.Tipo}
-    })
-  })
+//   pacienteServices = inject(PacienteServices)
+//   router = inject(Router);
+// constructor(){
+//   this.pacienteServices.crearGetgenero().subscribe(modelo =>{
+//     this.generonoseleccionado = modelo.Generos.map(genero=>{
+//       return<SelectorMultipleDTO>{Id:genero.Id,Tipo:genero.Tipo}
+//     })
+//   })
 
-}
+// }
 
 
   guardarpaciente(paciente: CrearPacienteDTO){
