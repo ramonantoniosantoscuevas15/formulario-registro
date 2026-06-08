@@ -11,20 +11,11 @@
       </svg>
       <input [formControl]="form.controls.nombre" class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
       focus-visible:ring-1 focus-visible:ring-ring
-      disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11" placeholder="Buscar por nombre,email o telefono">
+      disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11" placeholder="Buscar por nombre,email o telefono"/>
 
 
     </div>
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Estados</mat-label>
-      <mat-select [formControl]="form.controls.estadoId">
-        <mat-option [value]="0">Todos</mat-option>
-        @for (estado of estados; track $index) {
-          <mat-option [value]="estado.id">{{estado.tipo}}</mat-option>
-        }
-      </mat-select>
 
-    </mat-form-field> -->
      <select [formControl]="form.controls.estadoId"  role="combobox" aria-controls="radix-:r0:" aria-expanded="false" aria-autocomplete="none" dir="ltr"
     data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
     focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
@@ -48,4 +39,20 @@
 
   </form>
 
+
+
 </main>
+
+    <app-listadopacientes [pacientes]="paciente"></app-listadopacientes>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Estados</mat-label>
+      <mat-select [formControl]="form.controls.estadoId">
+        <mat-option [value]="0">Todos</mat-option>
+        @for (estado of estados; track $index) {
+          <mat-option [value]="estado.id">{{estado.tipo}}</mat-option>
+        }
+      </mat-select>
+
+    </mat-form-field> -->
+
+

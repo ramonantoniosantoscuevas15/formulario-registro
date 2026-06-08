@@ -16,13 +16,13 @@ export class Dashboard   {
       nombre: 'Rafael Zapata',
         fechanacimiento: new Date('2016-05-03'),
         telefono: 1253649,
-        direccion: 'por hay'
+        email: 'R@gmail.com'
     },
     {
       nombre: 'Ronny Zapata',
         fechanacimiento: new Date('2017-05-03'),
         telefono: 1253659,
-        direccion: 'por hay al lado'
+        email: 'ro@gmail.com'
     }
 
   ]
