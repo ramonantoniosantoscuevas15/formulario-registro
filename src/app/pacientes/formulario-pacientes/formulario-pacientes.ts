@@ -3,7 +3,7 @@ import { Pacientes } from "../pacientes";
 import { CrearPacienteDTO } from '../pacientedto';
 import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
 import { DoctorAutoCompleteDTO } from '../../doctores/doctordto';
-import { HospitalAutocompleDTO } from '../../hospitales/hospitalesdto';
+import { HospitalesDTO } from '../../hospitales/hospitalesdto';
 import { PacienteServices } from '../pacienteServices';
 import { Router } from '@angular/router';
 import { SelectorDTO } from '../../componentes/selector/selectordto';
@@ -37,7 +37,11 @@ export class FormularioPacientes {
 
   ]
   doctoresSeleccionados:DoctorAutoCompleteDTO[]=[]
-  hospitalesSeleccionados:HospitalAutocompleDTO[]=[]
+  hospitalesnoSeleccionados:HospitalesDTO[]=[
+    {Id:1,Tipo:'mocoso puello'},
+    {Id:2,Tipo:'Maternidad'}
+  ]
+  hospitalesSeleccionados:HospitalesDTO[]=[]
 
 //   pacienteServices = inject(PacienteServices)
 //   router = inject(Router);

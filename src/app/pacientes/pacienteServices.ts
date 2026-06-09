@@ -41,7 +41,7 @@ export class PacienteServices {
     formData.append('EstadoId',JSON.stringify(paciente.EstadoId))
     formData.append('SangreId',JSON.stringify(paciente.SangreId))
     formData.append('Doctores',JSON.stringify(paciente.Doctores))
-    formData.append('Hospitales',JSON.stringify(paciente.Hospitales))
+    
     return formData;
 
   }

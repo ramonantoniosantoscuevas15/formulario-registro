@@ -2,7 +2,7 @@
 import { DoctorAutoCompleteDTO } from "../doctores/doctordto";
 import { EstadoDTO } from "../Estado/estadodto";
 import { GeneroDTO } from "../Genero/generodto";
-import { HospitalAutocompleDTO } from "../hospitales/hospitalesdto";
+import { HospitalesDTO } from "../hospitales/hospitalesdto";
 import { SangreDTO } from "../Sangre/sangredto";
 
 export interface CrearPacienteDTO{
@@ -19,8 +19,9 @@ export interface CrearPacienteDTO{
   GeneroId?:number[],
   EstadoId?:number[],
   SangreId?:number[],
+  HospitalId?:number[],
   Doctores?:DoctorAutoCompleteDTO[]
-  Hospitales?:HospitalAutocompleDTO[]
+
 
 }
 export interface PacienteDTO{
@@ -38,8 +39,9 @@ export interface PacienteDTO{
   Generos: GeneroDTO[],
   Estados: EstadoDTO[],
   Sangres: SangreDTO[],
-  Doctores:DoctorAutoCompleteDTO[],
-  Hospitales:HospitalAutocompleDTO[]
+  Hospitales:HospitalesDTO[]
+  Doctores:DoctorAutoCompleteDTO[]
+
 
 
 
@@ -48,7 +50,8 @@ export interface PacienteDTO{
 export interface PacientesPostGetDTO{
   Generos: GeneroDTO[],
   Estados: EstadoDTO[],
-  Sangres: SangreDTO[]
+  Sangres: SangreDTO[],
+  Hospitales:HospitalesDTO[],
 }
 
 export interface GeneroPacientesPostGetdto{
@@ -63,6 +66,8 @@ export interface PacientePutGetDTO{
   EstadoNoSeleccionado:EstadoDTO[]
   SangreSeleccionado:SangreDTO[]
   SangreNoSeleccionado:SangreDTO[]
+  HospitalesSeleccionados:HospitalesDTO[]
+  HospitalesNoSeleccionados:HospitalesDTO[]
   Dotore:DoctorAutoCompleteDTO[]
-  Hospitales:HospitalAutocompleDTO[]
+
 }

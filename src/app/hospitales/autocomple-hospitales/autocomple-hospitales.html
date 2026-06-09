@@ -5,7 +5,7 @@
     <mat-autocomplete #auto (optionSelected)="hospitarSeleccionado($event)">
       @for(hospital of hospitales; track $index){
         <mat-option [value]="hospital">
-          {{hospital.Nombre}}
+          {{hospital.Tipo}}
         </mat-option>
       }
     </mat-autocomplete>

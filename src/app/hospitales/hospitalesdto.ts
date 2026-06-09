@@ -1,4 +1,4 @@
-export interface HospitalAutocompleDTO{
+export interface HospitalesDTO{
   Id:number,
-  Nombre:string,
+  Tipo:string
 }

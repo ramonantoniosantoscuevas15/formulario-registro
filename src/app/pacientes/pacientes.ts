@@ -13,13 +13,13 @@ import moment from 'moment';
 import { AutocompleDoctores } from "../doctores/autocomple-doctores/autocomple-doctores";
 import { DoctorAutoCompleteDTO } from '../doctores/doctordto';
 import { AutocompleHospitales } from "../hospitales/autocomple-hospitales/autocomple-hospitales";
-import { HospitalAutocompleDTO } from '../hospitales/hospitalesdto';
 import { Selector } from "../componentes/selector/selector";
 import { SelectorDTO } from '../componentes/selector/selectordto';
+import{NgxPrintModule} from 'ngx-print'
 
 @Component({
   selector: 'app-pacientes',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores, AutocompleHospitales,],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatDatepickerModule, SelectorMultiple, AutocompleDoctores,NgxPrintModule],
   templateUrl: './pacientes.html',
 })
 export class Pacientes implements OnInit{
@@ -38,7 +38,9 @@ export class Pacientes implements OnInit{
   @Input({required:true}) sangreseleccionada!:SelectorMultipleDTO[]
   @Input({required:true}) sangrenoseleccionada!:SelectorMultipleDTO[]
   @Input({required:true}) doctoresSeleccionados!:DoctorAutoCompleteDTO[]
-  @Input({required:true}) hospitalesSeleccionados!:HospitalAutocompleDTO[]
+  @Input({required:true}) hospitaleseleccionados!:SelectorMultipleDTO[]
+  @Input({required:true}) hospitalesnoseleccionados!:SelectorMultipleDTO[]
+
 
   @Input() modelo?:PacienteDTO
   @Output() postpaciente = new EventEmitter<CrearPacienteDTO>()
@@ -66,6 +68,8 @@ export class Pacientes implements OnInit{
     paciente.EstadoId = estadoId
     const sangreId = this.sangreseleccionada.map(val => val.Id)
     paciente.SangreId = sangreId
+    const hospitalId = this.hospitaleseleccionados.map(val => val.Id)
+    paciente.HospitalId = hospitalId
     paciente.Doctores = this.doctoresSeleccionados
     this.postpaciente.emit(paciente)
   }

@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-import { HospitalAutocompleDTO } from '../hospitalesdto';
+import { HospitalesDTO } from '../hospitalesdto';
 import { HospitalServices } from '../hospitalServices';
 
 @Component({
@@ -18,14 +18,14 @@ import { HospitalServices } from '../hospitalServices';
 export class AutocompleHospitales  {
 
   control = new FormControl()
-  hospitales : HospitalAutocompleDTO[] = [
-    {Id:1,Nombre:'Mocoso Puello'},
-    {Id:2,Nombre:'CEDIMAT'}
+  hospitales : HospitalesDTO[] = [
+    {Id:1,Tipo:'Mocoso Puello'},
+    {Id:2,Tipo:'CEDIMAT'}
   ]
   hospitalServices = inject(HospitalServices)
   columnasAMostrar = ['id','nombre','acciones']
-   @Input({required:true}) hospitalesSeleccionados: HospitalAutocompleDTO[]=[]
-  @ViewChild(MatTable) table!: MatTable<HospitalAutocompleDTO>
+   @Input({required:true}) hospitalesSeleccionados: HospitalesDTO[]=[]
+  @ViewChild(MatTable) table!: MatTable<HospitalesDTO>
 
   hospitarSeleccionado(event: MatAutocompleteSelectedEvent){
     this.hospitalesSeleccionados.push(event.option.value)
@@ -42,8 +42,8 @@ export class AutocompleHospitales  {
     this.table.renderRows()
   }
 
-  eliminar(hospital:HospitalAutocompleDTO){
-    const indice = this.hospitalesSeleccionados.findIndex((h: HospitalAutocompleDTO)=>h.Id === hospital.Id)
+  eliminar(hospital:HospitalesDTO){
+    const indice = this.hospitalesSeleccionados.findIndex((h: HospitalesDTO)=>h.Id === hospital.Id)
     this.hospitalesSeleccionados.splice(indice,1)
     this.table.renderRows()
   }
