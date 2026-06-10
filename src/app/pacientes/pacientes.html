@@ -20,168 +20,228 @@
       <div id="section">
 
 
-      <form class="space-y-8" [formGroup]="form">
-        <section>
+        <form class="space-y-8" [formGroup]="form" (submit)="guardarpaciente()">
+          <section>
 
-          <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
-          <div id="matform">
-            <mat-form-field appearance="outline">
-            <mat-label>Nombre y Apellido:</mat-label>
-            <input class="mat" matInput [formControl]="form.controls.Nombre" />
-            @if(formutilidades.isvalidField(form,'Nombre')){
-            <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
-            }
+            <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nombre
+                  y Apellido</label>
+                <input [formControl]="form.controls.Nombre" class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+          focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed
+          disabled:opacity-50 md:text-sm h-11" id="nombre" placeholder="Nombre y Apellido">
+                @if(formutilidades.isvalidField(form,'Nombre')){
+                <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
 
-          </mat-form-field>
+                }
 
-          </div>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Fecha
+                  de Nacimiento</label>
+                <input type="date" [formControl]="form.controls.FechaNacimiento"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+          focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Cedula</label>
+                <input type="number" [formControl]="form.controls.Cedula" class="flex w-full rounded-md border
+                border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+                disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'Cedula')){
+                <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Correo
+                  Electronico</label>
+                <input type="email" [formControl]="form.controls.Correo"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'Correo')){
+                <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Telefono
+                </label>
+                <input type="number" [formControl]="form.controls.Telefono" type="number"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'Telefono')){
+                <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
+                }
+
+
+              </div>
+              <div class="space-y-2">
+                <h1>Genero</h1>
+                <app-selector-multiple [Seleccionados]="generoseleccionado"
+                  [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
+
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Direccion</label>
+                <input type="text" [formControl]="form.controls.Direccion"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Calle, Casa,Ciudad">
+                @if(formutilidades.isvalidField(form,'Direccion')){
+                <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
+                }
+
+              </div>
 
 
 
-          <mat-form-field appearance="outline">
-            <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" [formControl]="form.controls.FechaNacimiento">
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Cedula</mat-label>
-            <input matInput [formControl]="form.controls.Cedula" type="number">
-            @if(formutilidades.isvalidField(form,'Cedula')){
-            <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
-            }
-
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Correo</mat-label>
-            <input matInput [formControl]="form.controls.Correo">
-            @if(formutilidades.isvalidField(form,'Correo')){
-            <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
-            }
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Telefono</mat-label>
-            <input matInput [formControl]="form.controls.Telefono" type="number">
-            @if(formutilidades.isvalidField(form,'Telefono')){
-            <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
-            }
-
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Direccion</mat-label>
-            <textarea placeholder="Calle,Numero,Provincia" matInput [formControl]="form.controls.Direccion"
-              type="text"></textarea>
-            @if(formutilidades.isvalidField(form,'Direccion')){
-            <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
-            }
-          </mat-form-field>
-          <h1>Genero</h1>
-          <app-selector-multiple [Seleccionados]="generoseleccionado"
-            [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
-        </section>
-        <section>
-          <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <h1>Estado</h1>
-              <app-selector-multiple [Seleccionados]="estadoseleccionado"
-                [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
 
             </div>
-            <div>
-              <h1>Sangre</h1>
-              <app-selector-multiple [Seleccionados]="sangreseleccionada"
-                [NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
+          </section>
+          <section>
+            <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <h1>Estado</h1>
+                <app-selector-multiple [Seleccionados]="estadoseleccionado"
+                  [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
 
-            </div>
-            <div>
-              <h1>Hospitales</h1>
-              <app-selector-multiple [Seleccionados]="hospitaleseleccionados"
-                [NoSeleccionados]="hospitalesnoseleccionados"></app-selector-multiple>
-            </div>
+              </div>
+              <div>
+                <h1>Sangre</h1>
+                <app-selector-multiple [Seleccionados]="sangreseleccionada"
+                  [NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
+
+              </div>
+              <div>
+                <h1>Hospitales</h1>
+                <app-selector-multiple [Seleccionados]="hospitaleseleccionados"
+                  [NoSeleccionados]="hospitalesnoseleccionados"></app-selector-multiple>
+              </div>
 
               <app-autocomple-doctores [doctoresSeleccionados]="doctoresSeleccionados"></app-autocomple-doctores>
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Alergias</label>
+                <textarea [formControl]="form.controls.Alegias" class="flex min-h-15 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1
+                focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  placeholder="Alergias conocidas del paciente..." rows="2"></textarea>
 
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Notas
+                  Médicas</label>
+                <textarea [formControl]="form.controls.NotasMedicas"
+                  class="flex min-h-15 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"></textarea>
 
-            <div class="space-y-2 md:col-span-2">
-              <mat-form-field appearance="outline">
-                <mat-label>Alergias</mat-label>
-                <textarea matInput [formControl]="form.controls.Alegias"></textarea>
-              </mat-form-field>
+              </div>
+
 
             </div>
-            <div class="space-y-2 md:col-span-2">
-              <mat-form-field appearance="outline">
-                <mat-label>Notas Medicas</mat-label>
-                <textarea matInput [formControl]="form.controls.NotasMedicas"></textarea>
+          </section>
+          <section>
+            <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
 
-              </mat-form-field>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nombre</label>
+                <input type="text" [formControl]="form.controls.NombreContacto"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Nombre del contacto">
+                @if(formutilidades.isvalidField(form,'NombreContacto')){
+                <mat-error>{{formutilidades.getFieldError(form,'NombreContacto')}}</mat-error>
+                }
+
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Teléfono</label>
+                <input type="number"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+              focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11"
+                  [formControl]="form.controls.TelefonoContacto">
+                @if(formutilidades.isvalidField(form,'TelefonoContacto')){
+                <mat-error>{{formutilidades.getFieldError(form,'TelefonoContacto')}}</mat-error>
+                }
+
+              </div>
+
 
             </div>
 
-          </div>
-        </section>
-        <section>
-          <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
-          <mat-form-field appearance="outline">
-            <mat-label>Nombre del Contacto</mat-label>
-            <input matInput [formControl]="form.controls.NombreContacto">
-            @if(formutilidades.isvalidField(form,'NombreContacto')){
-            <mat-error>{{formutilidades.getFieldError(form,'NombreContacto')}}</mat-error>
-            }
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Telefono del Contacto</mat-label>
-            <input matInput [formControl]="form.controls.TelefonoContacto" type="number">
-            @if(formutilidades.isvalidField(form,'TelefonoContacto')){
-            <mat-error>{{formutilidades.getFieldError(form,'TelefonoContacto')}}</mat-error>
-            }
 
-          </mat-form-field>
-        </section>
+
+
+          </section>
 
 
 
 
 
 
-        <div class="flex justify-end pt-2">
-          <div class="boton-registro">
-            <button [disabled]="form.invalid" type="submit" class="inline-flex items-center
+          <div class="flex justify-end pt-2">
+            <div class="boton-registro">
+              <button [disabled]="form.invalid" type="submit" class="inline-flex items-center
       justify-center gap-2 whitespace-nowrap
       rounded-md text-sm font-medium
       transition-colors focus-visible:outline-none
       focus-visible:ring-1 focus-visible:ring-ring
       disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
       [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-save w-4 h-4 mr-2">
-                <path
-                  d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
-                </path>
-                <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
-                <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
-              </svg>
-              Registro</button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-save w-4 h-4 mr-2">
+                  <path
+                    d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+                  </path>
+                  <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+                  <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+                </svg>
+                Registrar Paciente</button>
+
+            </div>
+            <div class="boton-imprimir">
+              <button class="inline-flex items-center
+      justify-center gap-2 whitespace-nowrap
+      rounded-md text-sm font-medium
+      transition-colors focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
+      [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8"
+                styleSheetFile="/styles.css" printTitle="Registro Medico" printSectionId="section" ngxPrint>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer"
+                  viewBox="0 0 16 16">
+                  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                  <path
+                    d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                </svg>
+                Imprimir</button>
+
+            </div>
+
+
+
+
+
+
+
+
 
           </div>
-          <button styleSheetFile="/styles.css"
-           printTitle="Registro Medico" printSectionId="section" ngxPrint>Imprimir</button>
 
-
-
-
-
-
-
-
-        </div>
-
-      </form>
+        </form>
       </div>
     </div>
   </div>

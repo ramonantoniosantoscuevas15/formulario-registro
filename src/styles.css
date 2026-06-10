@@ -51,6 +51,13 @@ ul il:hover{
   color: #ffffff;
   cursor: pointer;
 }
+.boton-imprimir button{
+  margin: 5px;
+  background: #ffff00 ;
+  color: #ffffff;
+  cursor: pointer;
+
+}
 mat-icon {
     cursor: pointer;
 }

@@ -16,6 +16,7 @@ import { SelectorDTO } from '../../componentes/selector/selectordto';
 export class FormularioPacientes {
   generoseleccionado:SelectorMultipleDTO[]=[]
   generonoseleccionado:SelectorMultipleDTO[]=[
+    {Id:1,Tipo:'masculino'}
 
 
   ]
