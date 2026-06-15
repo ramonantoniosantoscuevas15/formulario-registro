@@ -3,57 +3,50 @@ import { Pacientes } from "../pacientes";
 import { CrearPacienteDTO } from '../pacientedto';
 import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
 import { DoctorAutoCompleteDTO } from '../../doctores/doctordto';
-import { HospitalesDTO } from '../../hospitales/hospitalesdto';
+import { HospitalDTO } from '../../hospitales/hospitalesdto';
 import { PacienteServices } from '../pacienteServices';
 import { Router } from '@angular/router';
 import { SelectorDTO } from '../../componentes/selector/selectordto';
+import { Cargando } from "../../shared/cargando/cargando";
 
 @Component({
   selector: 'app-formulario-pacientes',
-  imports: [Pacientes],
+  imports: [Pacientes, Cargando],
   templateUrl: './formulario-pacientes.html',
 })
 export class FormularioPacientes {
-  generoseleccionado:SelectorMultipleDTO[]=[]
-  generonoseleccionado:SelectorMultipleDTO[]=[
-    {Id:1,Tipo:'masculino'}
-
-
-  ]
+  generoseleccionado:SelectorMultipleDTO[] = []
+  generonoseleccionado:SelectorMultipleDTO[]=[]
   estadoseleccionado:SelectorMultipleDTO[]=[]
-  estadonoseleccionado:SelectorMultipleDTO[]=[
-    {Id:1,Tipo:'Activo'},
-    {Id:2,Tipo:'Innativo'}
-
-]
+  estadonoseleccionado:SelectorMultipleDTO[]=[]
   sangreseleccionada:SelectorMultipleDTO[]=[]
-  sangrenoseleccionada:SelectorMultipleDTO[]=[
-    {Id:1,Tipo:'A+'},
-    {Id:2,Tipo:'A-'},
-    {Id:3,Tipo:'B+'},
-    {Id:4,Tipo:'AB+'},
-    {Id:5,Tipo:'AB-'},
-    {Id:6,Tipo:'O+'},
-    {Id:7,Tipo:'O-'}
-
-  ]
+  sangrenoseleccionada:SelectorMultipleDTO[]=[]
   doctoresSeleccionados:DoctorAutoCompleteDTO[]=[]
-  hospitalesnoSeleccionados:HospitalesDTO[]=[
-    {Id:1,Tipo:'mocoso puello'},
-    {Id:2,Tipo:'Maternidad'}
-  ]
-  hospitalesSeleccionados:HospitalesDTO[]=[]
+  hospitalesnoSeleccionados:HospitalDTO[]=[]
+  hospitalesSeleccionados:HospitalDTO[]=[]
 
-//   pacienteServices = inject(PacienteServices)
-//   router = inject(Router);
-// constructor(){
-//   this.pacienteServices.crearGetgenero().subscribe(modelo =>{
-//     this.generonoseleccionado = modelo.Generos.map(genero=>{
-//       return<SelectorMultipleDTO>{Id:genero.Id,Tipo:genero.Tipo}
-//     })
-//   })
+ pacienteServices = inject(PacienteServices)
+ router = inject(Router);
+ constructor(){
+  this.pacienteServices.crearGet().subscribe(modelo => {
+    this.generonoseleccionado = modelo.Genero.map(generos =>{
 
-// }
+       return <SelectorMultipleDTO>{Id:generos.Id,Tipo:generos.Tipo}
+
+    })
+
+    this.estadonoseleccionado =modelo.Estados.map(estado=>{
+      return <SelectorMultipleDTO>{Id:estado.Id,Tipo:estado.Tipo}
+    })
+    this.sangrenoseleccionada = modelo.Sangres.map(sangre =>{
+      return<SelectorMultipleDTO>{Id:sangre.Id,Tipo:sangre.Tipo}
+    })
+    this.hospitalesnoSeleccionados = modelo.Hospitales.map(hospital =>{
+      return<SelectorMultipleDTO>{Id:hospital.Id,Tipo:hospital.Tipo}
+    })
+  })
+
+ }
 
 
   guardarpaciente(paciente: CrearPacienteDTO){

@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { CrearPacienteDTO, GeneroPacientesPostGetdto, PacienteDTO, PacientesPostGetDTO } from './pacientedto';
+import { CrearPacienteDTO, GeneroPacientesPostGetdto, PacienteDTO, PacientePostGetDTO } from './pacientedto';
 import { JsonPipe } from '@angular/common';
 
 @Injectable({
@@ -10,15 +10,15 @@ import { JsonPipe } from '@angular/common';
 })
 export class PacienteServices {
   private http = inject(HttpClient)
-  private urlBase = environment.apiurl + '/pacientes'
+  private urlBase = `${environment.apiurl}/pacientes`
 
   public crear(paciente:CrearPacienteDTO):Observable<PacienteDTO>{
     const formData = this.construirFormdata(paciente);
     return this.http.post<PacienteDTO>(this.urlBase,formData)
 
   }
-  public crearGet():Observable<PacientesPostGetDTO>{
-    return this.http.get<PacientesPostGetDTO>(`${this.urlBase}/PostGet`)
+  public crearGet():Observable<PacientePostGetDTO>{
+    return this.http.get<PacientePostGetDTO>(`${this.urlBase}/PostGet`)
   }
   public crearGetgenero():Observable<GeneroPacientesPostGetdto>{
     return this.http.get<GeneroPacientesPostGetdto>(`${this.urlBase}/generopostget`)
@@ -40,8 +40,9 @@ export class PacienteServices {
     formData.append('GeneroId',JSON.stringify(paciente.GeneroId))
     formData.append('EstadoId',JSON.stringify(paciente.EstadoId))
     formData.append('SangreId',JSON.stringify(paciente.SangreId))
+    formData.append('HospitalId',JSON.stringify(paciente.HospitalId))
     formData.append('Doctores',JSON.stringify(paciente.Doctores))
-    
+
     return formData;
 
   }
