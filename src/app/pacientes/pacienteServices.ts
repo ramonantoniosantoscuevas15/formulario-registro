@@ -37,11 +37,7 @@ export class PacienteServices {
     formData.append('NotasMedicas',paciente.NotasMedicas)
     formData.append('NombreContacto',paciente.NombreContacto)
     formData.append('TelefonoContacto',JSON.stringify(paciente.TelefonoContacto))
-    formData.append('GeneroId',JSON.stringify(paciente.GeneroId))
-    formData.append('EstadoId',JSON.stringify(paciente.EstadoId))
-    formData.append('SangreId',JSON.stringify(paciente.SangreId))
-    formData.append('HospitalId',JSON.stringify(paciente.HospitalId))
-    formData.append('Doctores',JSON.stringify(paciente.Doctores))
+    
 
     return formData;
 

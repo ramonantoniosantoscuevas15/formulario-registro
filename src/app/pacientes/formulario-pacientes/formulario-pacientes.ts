@@ -11,40 +11,16 @@ import { Cargando } from "../../shared/cargando/cargando";
 
 @Component({
   selector: 'app-formulario-pacientes',
-  imports: [Pacientes, Cargando],
+  imports: [Pacientes],
   templateUrl: './formulario-pacientes.html',
 })
 export class FormularioPacientes {
-  generoseleccionado:SelectorMultipleDTO[] = []
-  generonoseleccionado:SelectorMultipleDTO[]=[]
-  estadoseleccionado:SelectorMultipleDTO[]=[]
-  estadonoseleccionado:SelectorMultipleDTO[]=[]
-  sangreseleccionada:SelectorMultipleDTO[]=[]
-  sangrenoseleccionada:SelectorMultipleDTO[]=[]
-  doctoresSeleccionados:DoctorAutoCompleteDTO[]=[]
-  hospitalesnoSeleccionados:HospitalDTO[]=[]
-  hospitalesSeleccionados:HospitalDTO[]=[]
 
- pacienteServices = inject(PacienteServices)
+
+ //pacienteServices = inject(PacienteServices)
  router = inject(Router);
  constructor(){
-  this.pacienteServices.crearGet().subscribe(modelo => {
-    this.generonoseleccionado = modelo.Genero.map(generos =>{
 
-       return <SelectorMultipleDTO>{Id:generos.Id,Tipo:generos.Tipo}
-
-    })
-
-    this.estadonoseleccionado =modelo.Estados.map(estado=>{
-      return <SelectorMultipleDTO>{Id:estado.Id,Tipo:estado.Tipo}
-    })
-    this.sangrenoseleccionada = modelo.Sangres.map(sangre =>{
-      return<SelectorMultipleDTO>{Id:sangre.Id,Tipo:sangre.Tipo}
-    })
-    this.hospitalesnoSeleccionados = modelo.Hospitales.map(hospital =>{
-      return<SelectorMultipleDTO>{Id:hospital.Id,Tipo:hospital.Tipo}
-    })
-  })
 
  }
 

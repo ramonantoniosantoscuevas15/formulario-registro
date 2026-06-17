@@ -1,12 +1,8 @@
-@if(generonoseleccionado){
-  <app-pacientes (postpaciente)="guardarpaciente($event)" [generoseleccionado]="generoseleccionado" [generonoseleccionado]="generonoseleccionado"
-[estadoseleccionado]="estadoseleccionado" [estadonoseleccionado]="estadonoseleccionado" [sangreseleccionada]="sangreseleccionada"[sangrenoseleccionada]="sangrenoseleccionada"
-[doctoresSeleccionados]="doctoresSeleccionados" [hospitalesnoseleccionados]="hospitalesnoSeleccionados" [hospitaleseleccionados]="hospitalesSeleccionados"
+
+  <app-pacientes (postpaciente)="guardarpaciente($event)"
 
 ></app-pacientes>
 
-}
-@else {
-  <app-cargando></app-cargando>
-}
+
+
 

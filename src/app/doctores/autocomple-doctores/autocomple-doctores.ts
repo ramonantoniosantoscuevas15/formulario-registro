@@ -15,21 +15,27 @@ import { DoctorServices } from '../doctorServices';
         DragDropModule],
   templateUrl: './autocomple-doctores.html',
 })
-export class AutocompleDoctores   {
+export class AutocompleDoctores implements OnInit   {
+  ngOnInit(): void {
+    this.control.valueChanges.subscribe(valor=>{
+      if(typeof valor === 'string' && valor){
+        this.doctoresServices.obtenerporNombre(valor).subscribe(doctor=>{
+          this.doctores = doctor
+        })
+      }
+    })
+  }
 
 
 
   control = new FormControl()
-  doctores : DoctorAutoCompleteDTO[]=[
-    {Id:1,Nombre:'Carmen',Especialidad:'Cirujana'},
-    {Id:2,Nombre:'Jose',Especialidad:'Ortopeda'}
-  ]
+  doctores : DoctorAutoCompleteDTO[]=[]
   doctoresServices = inject(DoctorServices)
 
   @Input({required:true})
   doctoresSeleccionados: DoctorAutoCompleteDTO[]=[]
 
-  columnasAMostrar =['Nombre','Especialidad','Acciones']
+  columnasAMostrar =['Nombre','Especialidad','Motivo','Acciones']
 
   @ViewChild(MatTable) table!: MatTable<DoctorAutoCompleteDTO>
 

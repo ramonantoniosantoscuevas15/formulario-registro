@@ -14,7 +14,7 @@ export class DoctorServices {
   public crear(doctor:CrearDoctorDTO){
     return this.http.post(this.urlBase,doctor)
   }
-  public obtenerporNombre(nombre: string):Observable<DoctorAutoCompleteDTO[]>{
-    return this.http.get<DoctorAutoCompleteDTO[]>(`${this.urlBase}/${nombre}`)
+  public obtenerporNombre(Nombre: string):Observable<DoctorAutoCompleteDTO[]>{
+    return this.http.get<DoctorAutoCompleteDTO[]>(`${this.urlBase}/${Nombre}`)
   }
 }

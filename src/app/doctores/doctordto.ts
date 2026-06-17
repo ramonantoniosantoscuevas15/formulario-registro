@@ -13,6 +13,7 @@ export interface CrearDoctorDTO{
 export interface DoctorAutoCompleteDTO{
   Id:number,
   Nombre:string,
-  Especialidad:string
+  Especialidad:string,
+  Motivo:string
 
 }

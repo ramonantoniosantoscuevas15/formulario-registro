@@ -33,7 +33,7 @@
           focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed
           disabled:opacity-50 md:text-sm h-11" id="nombre" placeholder="Nombre y Apellido">
                 @if(formutilidades.isvalidField(form,'Nombre')){
-                <mat-error>{{formutilidades.getFieldError(form,"Nombre")}}</mat-error>
+                <p class="error">{{formutilidades.getFieldError(form,"Nombre")}}</p>
 
                 }
 
@@ -49,12 +49,36 @@
               </div>
               <div class="space-y-2">
                 <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Seleccione
+                  un Genero</label>
+
+                <select formControlName="Genero" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+
+                  @for (Genero of Generos; track $index) {
+                  <option [value]="Genero.genero">{{Genero.genero}}</option>
+
+                  }
+
+                </select>
+
+              </div>
+              <div class="space-y-2">
+                <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Cedula</label>
                 <input type="number" [formControl]="form.controls.Cedula" class="flex w-full rounded-md border
                 border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
                 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
                 @if(formutilidades.isvalidField(form,'Cedula')){
-                <mat-error>{{formutilidades.getFieldError(form,"Cedula")}}</mat-error>
+                <p class="error">{{formutilidades.getFieldError(form,"Cedula")}}</p>
                 }
 
               </div>
@@ -66,7 +90,7 @@
                   class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
                 focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
                 @if(formutilidades.isvalidField(form,'Correo')){
-                <mat-error>{{formutilidades.getFieldError(form,'Correo')}}</mat-error>
+                <p class="error">{{formutilidades.getFieldError(form,'Correo')}}</p>
                 }
 
               </div>
@@ -78,17 +102,12 @@
                   class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
                 focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
                 @if(formutilidades.isvalidField(form,'Telefono')){
-                <mat-error>{{formutilidades.getFieldError(form,"Telefono")}}</mat-error>
+                <p class="error">{{formutilidades.getFieldError(form,"Telefono")}}</p>
                 }
 
 
               </div>
-              <div class="space-y-2">
-                <h1>Genero</h1>
-                <app-selector-multiple [Seleccionados]="generoseleccionado"
-                  [NoSeleccionados]="generonoseleccionado"></app-selector-multiple>
 
-              </div>
               <div class="space-y-2 md:col-span-2">
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Direccion</label>
@@ -96,7 +115,7 @@
                   class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
                 focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Calle, Casa,Ciudad">
                 @if(formutilidades.isvalidField(form,'Direccion')){
-                <mat-error>{{formutilidades.getFieldError(form,"Direccion")}}</mat-error>
+                <p class="error">{{formutilidades.getFieldError(form,"Direccion")}}</p>
                 }
 
               </div>
@@ -109,25 +128,87 @@
           <section>
             <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <h1>Estado</h1>
-                <app-selector-multiple [Seleccionados]="estadoseleccionado"
-                  [NoSeleccionados]="estadonoseleccionado"></app-selector-multiple>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Seleccione
+                  Un Tipo de Sangre
+                </label>
+                <select formControlName="Sangre" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+                  @for (Sangre of Sangres; track $index) {
+                  <option [value]="Sangre.sangre">{{Sangre.sangre}}</option>
+                  }
+                </select>
 
               </div>
-              <div>
-                <h1>Sangre</h1>
-                <app-selector-multiple [Seleccionados]="sangreseleccionada"
-                  [NoSeleccionados]="sangrenoseleccionada"></app-selector-multiple>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Seleccione un Estado
+                </label>
+
+                <select formControlName="Estado" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+                  @for (Estado of Estados; track $index) {
+                  <option [value]="Estado.estado">{{Estado.estado}}</option>
+
+                  }
+                </select>
+
 
               </div>
-              <div>
-                <h1>Hospitales</h1>
-                <app-selector-multiple [Seleccionados]="hospitaleseleccionados"
-                  [NoSeleccionados]="hospitalesnoseleccionados"></app-selector-multiple>
+              <div class="space-y-2">
+                <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"> Centro Medico</label>
+                <input type="text" [formControl]="form.controls.Hospital"
+                class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if (formutilidades.isvalidField(form,'Hospital')) {
+                  <p class="error">{{formutilidades.getFieldError(form,"Hospital")}}</p>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"> Nombre del Doctro</label>
+                <input type="text" [formControl]="form.controls.NombreDoctor"
+                class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if (formutilidades.isvalidField(form,'NombreDoctor')) {
+                  <p class="error">{{formutilidades.getFieldError(form, "NombreDoctor")}}</p>
+                }
+
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Motivo</label>
+                <input type="text" [formControl]="form.controls.Motivo"
+                 class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11"
+                placeholder="Consulta,Operacion tec."
+                >
+                @if (formutilidades.isvalidField(form, 'Motivo')) {
+                  <p class="error">{{formutilidades.getFieldError(form,"Motivo")}}</p>
+                }
+
               </div>
 
-              <app-autocomple-doctores [doctoresSeleccionados]="doctoresSeleccionados"></app-autocomple-doctores>
+
+
+
+
               <div class="space-y-2 md:col-span-2">
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Alergias</label>
@@ -148,6 +229,7 @@
 
 
             </div>
+
           </section>
           <section>
             <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
@@ -242,7 +324,11 @@
           </div>
 
         </form>
+
+
       </div>
     </div>
   </div>
+
 </main>
+
